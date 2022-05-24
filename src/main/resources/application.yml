@@ -1,0 +1,31 @@
+spring:
+    application:
+        name: kafka-demo
+    datasource:
+        driverClassName: org.postgresql.Driver
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        properties:
+            hibernate:
+                default_schema: kafka_demo_idempotent_consumer
+        hibernate:
+            ddl-auto: validate
+        generate-ddl: false
+    data:
+        rest:
+            detection-strategy: annotated
+    flyway:
+        schemas: kafka_demo_idempotent_consumer
+
+kafka:
+    consumer:
+        # Default to 30 seconds
+        maxPollIntervalMs: 30000
+
+server:
+    port: 9001
+
+kafkademo:
+    id: demo
+    thirdpartyEndpoint: https://kafkademo.com/api/kafkaidempotentconsumerdemo/
+    outboundTopic : "demo-outbound-topic"

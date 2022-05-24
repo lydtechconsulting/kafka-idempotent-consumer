@@ -1,0 +1,22 @@
+{
+    "name": "kafka-idempotent-consumer-demo-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "tasks.max": "1",
+        "database.hostname": "postgres-host",
+        "database.port": "5432",
+        "database.user": "user",
+        "database.password": "password",
+        "database.dbname" : "postgres-db",
+        "database.server.name": "demodbserver",
+        "table.include.list": "kafka_demo_idempotent_consumer.outbox_event",
+        "transforms": "outbox",
+        "transforms.outbox.predicate": "IsOutboxTable",
+        "transforms.outbox.type": "io.debezium.transforms.outbox.EventRouter",
+        "transforms.outbox.route.by.field": "destination",
+        "transforms.outbox.route.topic.replacement": "${routedByValue}",
+        "predicates": "IsOutboxTable",
+        "predicates.IsOutboxTable.type": "org.apache.kafka.connect.transforms.predicates.TopicNameMatches",
+        "predicates.IsOutboxTable.pattern": "kafka_demo_idempotent_consumer.outbox_event"
+    }
+}

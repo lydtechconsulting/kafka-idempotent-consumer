@@ -1,0 +1,13 @@
+{
+    "scenarioName": "Retry",
+    "requiredScenarioState": "Started",
+    "newScenarioState": "Unavailable",
+    "request": {
+        "method": "GET",
+        "urlPattern": "/api/kafkaidempotentconsumerdemo/.*"
+    },
+    "response": {
+        "status": 503,
+        "body": "Service Unavailable"
+    }
+}

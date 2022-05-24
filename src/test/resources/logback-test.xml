@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- normal pattern -->
+<!--            <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - %msg%n</pattern>-->
+            <!-- compact pattern -->
+            <pattern>%d{HH:mm:ss.SSS} %highlight(%-5level) %cyan(%logger{18}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- normal logging -->
+    <!--    <logger name="com" level="INFO"/>-->
+    <!--    <logger name="io" level="INFO"/>-->
+    <!--    <logger name="org" level="INFO"/>-->
+    <!--    <logger name="org.spring" level="INFO"/>-->
+    <!--    <logger name="kafka" level="INFO"/>-->
+    <!--    <logger name="state" level="INFO"/>-->
+    <!--    <logger name="kafka.coordinator.group.GroupCoordinator" level="INFO"/>-->
+    <!--    <logger name="wiremock" level="INFO"/>-->
+    <!--    <logger name="demo.kafka" level="DEBUG"/>-->
+    <!--    <logger name="dev.lydtech" level="DEBUG"/>-->
+
+    <!-- sparse logging -->
+    <logger name="com" level="WARN"/>
+    <logger name="io" level="WARN"/>
+    <logger name="org" level="WARN"/>
+    <logger name="org.spring" level="WARN"/>
+    <logger name="kafka" level="WARN"/>
+    <logger name="state" level="WARN"/>
+    <logger name="kafka.coordinator.group.GroupCoordinator" level="WARN"/>
+    <logger name="wiremock" level="WARN"/>
+    <logger name="demo.kafka" level="INFO"/>
+    <logger name="dev.lydtech" level="INFO"/>
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

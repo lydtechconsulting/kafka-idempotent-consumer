@@ -1,0 +1,16 @@
+---
+kafka:
+    bootstrap-servers: kafka:9092
+
+    consumer:
+        # Override to 10 seconds
+        maxPollIntervalMs: 10000
+
+spring:
+    datasource:
+        url: jdbc:postgresql://postgres-host:5432/postgres-db?currentSchema=kafka_demo_idempotent_consumer
+        username: user
+        password: password
+
+kafkademo:
+    thirdpartyEndpoint: http://wiremock:8080/api/kafkaidempotentconsumerdemo/

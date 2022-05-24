@@ -1,0 +1,15 @@
+kafka:
+    bootstrap-servers: ${spring.embedded.kafka.brokers}
+
+kafkademo:
+    thirdpartyEndpoint: http://localhost:${wiremock.server.port}/api/kafkaidempotentconsumerdemo/
+
+spring:
+    datasource:
+        driverClassName: org.h2.Driver
+        url: jdbc:h2:mem:testdb;SCHEMA_SEARCH_PATH=kafka_demo_idempotent_consumer;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        hibernate:
+            ddl-auto: none
+            show_sql: true
