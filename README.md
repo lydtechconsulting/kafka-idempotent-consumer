@@ -1,7 +1,9 @@
-# Kafka Idempotent Consumer & Transactional Outbox Project
+# Kafka Idempotent Consumer & Transactional Outbox
 
 Spring Boot application demonstrating the Kafka Idempotent Consumer pattern and Transactional Outbox pattern with 
 Debezium (Kafka Connect) used for Change Data Capture (CDC) to publish outbound events.
+
+This repo accompanies the article [Kafka Idempotent Consumer & Transactional Outbox](https://medium.com/lydtech-consulting/kafka-idempotent-consumer-transactional-outbox-74b304815550).
 
 ## Integration Tests
 
@@ -22,6 +24,8 @@ retry can cause duplicate message delivery, enabling demonstration of event dedu
 
 Two instances of the service are also running in docker containers.
 
+For more on the component tests see: https://github.com/lydtechconsulting/component-test-framework
+
 Build Spring Boot application jar:
 ```
 mvn clean install
@@ -40,6 +44,11 @@ mvn test -Pcomponent
 Run tests leaving containers up:
 ```
 mvn test -Pcomponent -Dcontainers.stayup
+```
+
+Manual clean up (if left containers up):
+```
+docker rm -f $(docker ps -aq)
 ```
 
 # Kafka Connect / Debezium
