@@ -1,12 +1,14 @@
 {
     "scenarioName": "Retry",
-    "requiredScenarioState": "Success",
+    "requiredScenarioState": "Started",
+    "newScenarioState": "Immediate",
     "request": {
         "method": "GET",
         "urlPattern": "/api/kafkaidempotentconsumerdemo/.*"
     },
     "response": {
         "status": 200,
-        "body": "Success"
+        "body": "Success",
+        "fixedDelayMilliseconds": 6000
     }
 }

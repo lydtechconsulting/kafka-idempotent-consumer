@@ -20,7 +20,6 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
-import org.springframework.retry.support.RetryTemplate;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Slf4j
@@ -32,29 +31,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class KafkaDemoConfiguration {
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory(final ConsumerFactory<String, String> consumerFactory, final RetryTemplate retryTemplate) {
+    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory(final ConsumerFactory<String, String> consumerFactory) {
         final ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory();
         factory.setConsumerFactory(consumerFactory);
-        factory.setRetryTemplate(retryTemplate);
-        factory.setRecoveryCallback((context -> {
-            log.warn("**** Retries exhausted - error class: "+context.getLastThrowable()+" - error message: "+context.getLastThrowable().getMessage());
-            // Return null to mark processing complete.
-            return null;
-        }));
         return factory;
     }
 
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate(final ProducerFactory<String, String> producerFactory) {
         return new KafkaTemplate<>(producerFactory);
-    }
-
-    @Bean
-    public RetryTemplate retryTemplate() {
-        return RetryTemplate.builder()
-                .fixedBackoff(6000)
-                .maxAttempts(5)
-                .build();
     }
 
     @Bean

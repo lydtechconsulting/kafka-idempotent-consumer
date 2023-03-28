@@ -7,7 +7,7 @@ This repo accompanies the article [Kafka Idempotent Consumer & Transactional Out
 
 ## Integration Tests
 
-Build and test with maven and Java 11.
+Build and test with maven and Java 17.
 
 Run integration tests with `mvn clean test`
 

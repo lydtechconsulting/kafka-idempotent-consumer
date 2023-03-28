@@ -25,7 +25,7 @@ public class KafkaIdempotentConsumer {
     final DemoService demoRetryService;
 
     @KafkaListener(topics = "demo-idempotent-inbound-topic", groupId = "kafkaConsumerGroup", containerFactory = "kafkaListenerContainerFactory")
-    public void listen(@Header(KafkaClient.EVENT_ID_HEADER_KEY) String eventId, @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) String key, @Payload final String payload) {
+    public void listen(@Header(KafkaClient.EVENT_ID_HEADER_KEY) String eventId, @Header(KafkaHeaders.RECEIVED_KEY) String key, @Payload final String payload) {
         counter.getAndIncrement();
         log.debug("Received message [" +counter.get()+ "] - eventId: "+eventId+" - key: " + key + " - payload: " + payload);
         try {

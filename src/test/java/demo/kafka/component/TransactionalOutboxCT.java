@@ -68,21 +68,21 @@ public class TransactionalOutboxCT {
     }
 
     /**
-     * The REST call to the third party service during the event processing is wiremocked to fail twice before success.
+     * The REST call to the third party service during the event processing is wiremocked to delay before responding
+     * successfully, and therefore exceed the max poll interval, with subsequent calls responding successfully immediately.
      *
-     * The event is retried (with stateless retry), and this exceeds the consumer poll timeout, so the message is
-     * redelivered to a second consumer instance.
+     * The event is therefore retried while the first call is delayed, so the message is redelivered to a second consumer
+     * instance.
      *
-     * The consumer is idempotent, so the message is deduplicated.  The outbound event is emitted via the
-     * transactional outbox, with Debezium writing the event to Kafka.
+     * The consumer is idempotent, so the message is deduplicated.  The outbound event is emitted via the transactional
+     * outbox, with Debezium writing the event to Kafka.
      *
      * The outbound event should have the original payload in its payload.
      */
     @Test
     public void testIdempotentConsumerAndTransactionalOutboxWithDeduplication() throws Exception {
-        WiremockClient.getInstance().postMappingFile("thirdParty/retry_behaviour_01_start-to-unavailable.json");
-        WiremockClient.getInstance().postMappingFile("thirdParty/retry_behaviour_02_unavailable-to-success.json");
-        WiremockClient.getInstance().postMappingFile("thirdParty/retry_behaviour_03_success.json");
+        WiremockClient.getInstance().postMappingFile("thirdParty/retry_behaviour_01_delay-to-immediate.json");
+        WiremockClient.getInstance().postMappingFile("thirdParty/retry_behaviour_02_immediate.json");
 
         String key = UUID.randomUUID().toString();
         String eventId = UUID.randomUUID().toString();
