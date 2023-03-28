@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>demo.kafka</groupId>
 	<artifactId>kafka-idempotent-consumer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>kafka-idempotent-consumer</name>
 	<description>Demo Kafka Idempotent Consumer and Transactional Outbox</description>
 	<properties>

@@ -7,6 +7,8 @@ This repo accompanies the article [Kafka Idempotent Consumer & Transactional Out
 
 ## Integration Tests
 
+Build and test with maven and Java 11.
+
 Run integration tests with `mvn clean test`
 
 The tests demonstrate event deduplication with the Idempotent Consumer pattern when duplicate events are consumed by the 
