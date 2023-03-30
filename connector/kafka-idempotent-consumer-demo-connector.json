@@ -3,12 +3,11 @@
     "config": {
         "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
         "tasks.max": "1",
-        "database.hostname": "postgres-host",
+        "database.hostname": "postgres",
         "database.port": "5432",
-        "database.user": "user",
-        "database.password": "password",
-        "database.dbname" : "postgres-db",
-        "database.server.name": "demodbserver",
+        "database.user": "postgres",
+        "database.password": "postgres",
+        "database.dbname" : "postgres",
         "table.include.list": "kafka_demo_idempotent_consumer.outbox_event",
         "transforms": "outbox",
         "transforms.outbox.predicate": "IsOutboxTable",
@@ -17,6 +16,7 @@
         "transforms.outbox.route.topic.replacement": "${routedByValue}",
         "predicates": "IsOutboxTable",
         "predicates.IsOutboxTable.type": "org.apache.kafka.connect.transforms.predicates.TopicNameMatches",
-        "predicates.IsOutboxTable.pattern": "kafka_demo_idempotent_consumer.outbox_event"
+        "predicates.IsOutboxTable.pattern": "kafka_demo_idempotent_consumer.outbox_event",
+        "topic.prefix": "demo"
     }
 }

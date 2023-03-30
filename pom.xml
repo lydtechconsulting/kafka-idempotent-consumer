@@ -100,7 +100,7 @@
 		<dependency>
 			<groupId>dev.lydtech</groupId>
 			<artifactId>component-test-framework</artifactId>
-			<version>2.0.0</version>
+			<version>2.1.0</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -159,11 +159,11 @@
 								<service.instance.count>2</service.instance.count>
 								<service.container.logging.enabled>false</service.container.logging.enabled>
 								<postgres.enabled>true</postgres.enabled>
-								<postgres.host.name>postgres-host</postgres.host.name>
+								<postgres.host.name>postgres</postgres.host.name>
 								<postgres.port>5432</postgres.port>
-								<postgres.database.name>postgres-db</postgres.database.name>
-								<postgres.username>user</postgres.username>
-								<postgres.password>password</postgres.password>
+								<postgres.database.name>postgres</postgres.database.name>
+								<postgres.username>postgres</postgres.username>
+								<postgres.password>postgres</postgres.password>
 								<postgres.container.logging.enabled>false</postgres.container.logging.enabled>
 								<kafka.enabled>true</kafka.enabled>
 								<kafka.container.logging.enabled>false</kafka.container.logging.enabled>
@@ -171,7 +171,6 @@
 								<debezium.port>8083</debezium.port>
 								<debezium.container.logging.enabled>false</debezium.container.logging.enabled>
 								<wiremock.enabled>true</wiremock.enabled>
-								<wiremock.image.tag>2.32.0</wiremock.image.tag>
 								<wiremock.port>8080</wiremock.port>
 								<wiremock.container.logging.enabled>false</wiremock.container.logging.enabled>
 							</systemPropertyVariables>

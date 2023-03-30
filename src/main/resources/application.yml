@@ -3,6 +3,9 @@ spring:
         name: kafka-demo
     datasource:
         driverClassName: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/postgres?currentSchema=kafka_demo_idempotent_consumer
+        username: postgres
+        password: postgres
     jpa:
         database-platform: org.hibernate.dialect.PostgreSQLDialect
         properties:
@@ -18,6 +21,7 @@ spring:
         schemas: kafka_demo_idempotent_consumer
 
 kafka:
+    bootstrap-servers: localhost:9092
     consumer:
         # Default to 30 seconds
         maxPollIntervalMs: 30000
@@ -27,5 +31,5 @@ server:
 
 kafkademo:
     id: demo
-    thirdpartyEndpoint: https://kafkademo.com/api/kafkaidempotentconsumerdemo/
+    thirdpartyEndpoint: http://localhost:9002/api/kafkaidempotentconsumerdemo/
     outboundTopic : "demo-outbound-topic"

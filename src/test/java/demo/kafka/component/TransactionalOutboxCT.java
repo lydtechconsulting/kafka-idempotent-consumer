@@ -37,7 +37,7 @@ public class TransactionalOutboxCT {
 
     @BeforeEach
     public void setup() {
-        consumer = KafkaClient.getInstance().createConsumer(GROUP_ID, "demodbserver.kafka_demo_idempotent_consumer.outbox_event");
+        consumer = KafkaClient.getInstance().createConsumer(GROUP_ID, "demo.kafka_demo_idempotent_consumer.outbox_event");
         WiremockClient.getInstance().resetMappings();
         DebeziumClient.getInstance().createConnector("connector/kafka-idempotent-consumer-demo-connector.json");
 
