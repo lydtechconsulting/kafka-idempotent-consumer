@@ -30,7 +30,7 @@ services:
             KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR:
 
     debezium:
-        image: quay.io/debezium/connect:2.2
+        image: quay.io/debezium/connect:2.4
         environment:
             BOOTSTRAP_SERVERS: kafka:29092
             GROUP_ID: 1
@@ -42,7 +42,7 @@ services:
 
     postgres:
         container_name: postgres
-        image: quay.io/debezium/example-postgres:2.2
+        image: quay.io/debezium/example-postgres:2.4
         restart: always
         environment:
             - POSTGRES_DB=postgres
